@@ -29,19 +29,14 @@ async def root() -> RedirectResponse:
 
 
 @app.get("/features")
-def read_features() -> JSONResponse:
+async def read_features() -> JSONResponse:
     features: List[Dict[str, str]] = get_feature_list()
     return JSONResponse(content=features)
 
 
 @app.post("/mdn-browser-compat-data")
-def read_mdn_browser_compat_data(request: FeatureRequest) -> JSONResponse:
+async def read_mdn_browser_compat_data(request: FeatureRequest) -> JSONResponse:
     data: Dict[str, Any] | None = get_mdn_browser_compat_data(request.feature)
     if data:
         return JSONResponse(content=data)
     return JSONResponse(content={"error": "Feature not found"}, status_code=404)
-
-
-async def on_fetch(request: Any, env: Dict[str, Any]) -> Any:
-    import asgi  # type: ignore
-    return await asgi.fetch(app, request, env)

@@ -1,7 +1,11 @@
 name = "caniuse-embed-fastapi"
-main = "src/main.py"
+main = "src/worker.py"
 compatibility_flags = ["python_workers", "python_dedicated_snapshot"]
-compatibility_date = "2025-10-21"
+compatibility_date = "2025-10-09"
+preview_urls = true
 
 [observability]
 enabled = true
+
+[assets]
+directory = "./static"
