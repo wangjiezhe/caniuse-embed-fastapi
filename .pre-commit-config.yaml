@@ -9,7 +9,7 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
         exclude: .vscode
-        exlucde_types: [json]
+        exclude_types: [json]
       - id: mixed-line-ending
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.1
@@ -21,7 +21,7 @@ repos:
     rev: 25.9.0
     hooks:
       - id: black
-        language_version: python3.12
+        language_version: python3.13
   - repo: https://github.com/pycqa/isort
     rev: 7.0.0
     hooks:
