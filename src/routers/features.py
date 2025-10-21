@@ -42,7 +42,7 @@ def get_mdn_data() -> List[Dict[str, str]]:
 
 @lru_cache(maxsize=1)
 def get_can_i_use_data() -> List[Dict[str, str]]:
-    response: httpx.Response = httpx.get(CANIUSE_URL)
+    response: httpx.Response = httpx.get(CANIUSE_URL, follow_redirects=True)
     response.raise_for_status()  # Raise an exception for HTTP errors
     data: Dict[str, Any] = response.json()
 
