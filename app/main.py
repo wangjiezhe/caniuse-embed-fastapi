@@ -40,3 +40,8 @@ def read_mdn_browser_compat_data(request: FeatureRequest) -> JSONResponse:
     if data:
         return JSONResponse(content=data)
     return JSONResponse(content={"error": "Feature not found"}, status_code=404)
+
+
+async def on_fetch(request: Any, env: Dict[str, Any]) -> Any:
+    import asgi  # type: ignore
+    return await asgi.fetch(app, request, env)
