@@ -5,8 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel
 
-from app.routers.compat_data import get_mdn_browser_compat_data
-from app.routers.features import get_feature_list
+from routers.compat_data import get_mdn_browser_compat_data
+from routers.features import get_feature_list
 
 app = FastAPI()
 

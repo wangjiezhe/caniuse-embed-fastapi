@@ -3,9 +3,9 @@ from typing import Any, Dict, List
 
 import httpx
 
-from app.constants import CANIUSE_URL
-from app.routers.compat_data import get_bcd_data
-from app.utils.formatters import format_mdn_feature_title
+from constants import CANIUSE_URL
+from routers.compat_data import get_bcd_data
+from utils.formatters import format_mdn_feature_title
 
 
 def get_mdn_data() -> List[Dict[str, str]]:
