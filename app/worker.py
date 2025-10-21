@@ -1,8 +1,7 @@
 # type: ignore
 
+from server import app
 from workers import WorkerEntrypoint
-
-from .server import app
 
 
 class Default(WorkerEntrypoint):

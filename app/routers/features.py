@@ -2,10 +2,9 @@ from functools import lru_cache
 from typing import Any, Dict, List
 
 import httpx
-
-from ..constants import CANIUSE_URL
-from ..utils.formatters import format_mdn_feature_title
-from .compat_data import get_bcd_data
+from compat_data import get_bcd_data
+from constants import CANIUSE_URL
+from utils.formatters import format_mdn_feature_title
 
 
 def get_mdn_data() -> List[Dict[str, str]]:
