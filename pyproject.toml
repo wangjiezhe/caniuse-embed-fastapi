@@ -1,7 +1,7 @@
 [project]
 name = "caniuse-embed-fastapi"
 version = "0.1.0"
-description = ""
+description = "FastAPI for CanIUse Embed"
 authors = [
   { name="Jiezhe Wang", email="wangjiezhe@gmail.com" },
 ]
