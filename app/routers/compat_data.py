@@ -1,19 +1,17 @@
-import requests
-from typing import Dict, Any, Optional, List
+from functools import lru_cache
+from typing import Any, Dict, List, Optional
 
+import requests
+
+from app.constants import MDN_DATA_URL
 from app.utils.formatters import format_mdn_feature_title
 
-BCD_DATA: Optional[Dict[str, Any]] = None
 
-
+@lru_cache(maxsize=1)
 def get_bcd_data() -> Dict[str, Any]:
-    global BCD_DATA
-    if BCD_DATA is None:
-        MDN_DATA_URL: str = "https://unpkg.com/@mdn/browser-compat-data/data.json"
-        response: requests.Response = requests.get(MDN_DATA_URL)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        BCD_DATA = response.json()
-    return BCD_DATA
+    response: requests.Response = requests.get(MDN_DATA_URL)
+    response.raise_for_status()  # Raise an exception for HTTP errors
+    return response.json()
 
 
 def get_mdn_browser_compat_data(feature: str) -> Optional[Dict[str, Any]]:
