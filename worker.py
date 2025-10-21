@@ -2,7 +2,7 @@
 
 from workers import WorkerEntrypoint
 
-from server import app
+from app.server import app
 
 
 class Default(WorkerEntrypoint):

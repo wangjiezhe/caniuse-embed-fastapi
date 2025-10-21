@@ -1,17 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "uv sync",
-  "devCommand": "uvicorn server:app --app-dir src --host 0.0.0.0 --port 3000",
   "builds": [
     {
-      "src": "src/server.py",
+      "src": "app/server.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/server.py"
+      "dest": "app/server.py"
     }
   ],
   "git": {
