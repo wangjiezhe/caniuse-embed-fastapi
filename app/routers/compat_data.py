@@ -2,9 +2,8 @@ from functools import lru_cache
 from typing import Any, Dict, List, Optional
 
 import httpx
-
-from ..constants import MDN_DATA_URL
-from ..utils.formatters import format_mdn_feature_title
+from constants import MDN_DATA_URL
+from utils.formatters import format_mdn_feature_title
 
 
 @lru_cache(maxsize=1)

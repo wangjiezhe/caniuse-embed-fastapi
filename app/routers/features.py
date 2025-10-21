@@ -2,8 +2,8 @@ from functools import lru_cache
 from typing import Any, Dict, List
 
 import httpx
-from compat_data import get_bcd_data
 from constants import CANIUSE_URL
+from routers.compat_data import get_bcd_data
 from utils.formatters import format_mdn_feature_title
 
 
