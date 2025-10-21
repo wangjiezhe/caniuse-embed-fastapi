@@ -5,8 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel
 
-from routers.compat_data import get_mdn_browser_compat_data
-from routers.features import get_feature_list
+from .routers.compat_data import get_mdn_browser_compat_data
+from .routers.features import (
+    get_caniuse_feature_list,
+    get_feature_list,
+    get_mdn_feature_list,
+)
 
 app = FastAPI()
 
@@ -26,6 +30,18 @@ class FeatureRequest(BaseModel):
 @app.get("/", include_in_schema=False)
 async def root() -> RedirectResponse:
     return RedirectResponse(url="/docs")
+
+
+@app.get("/caniuse-features")
+async def read_caniuse_features() -> JSONResponse:
+    features: List[Dict[str, str]] = get_caniuse_feature_list()
+    return JSONResponse(content=features)
+
+
+@app.get("/mdn-features")
+async def read_mdn_features() -> JSONResponse:
+    features: List[Dict[str, str]] = get_mdn_feature_list()
+    return JSONResponse(content=features)
 
 
 @app.get("/features")

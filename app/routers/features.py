@@ -3,9 +3,9 @@ from typing import Any, Dict, List
 
 import httpx
 
-from constants import CANIUSE_URL
-from routers.compat_data import get_bcd_data
-from utils.formatters import format_mdn_feature_title
+from ..constants import CANIUSE_URL
+from ..utils.formatters import format_mdn_feature_title
+from .compat_data import get_bcd_data
 
 
 def get_mdn_data() -> List[Dict[str, str]]:
@@ -56,6 +56,18 @@ def get_can_i_use_data() -> List[Dict[str, str]]:
         features.append(feature)
 
     return features
+
+
+def get_caniuse_feature_list() -> List[Dict[str, str]]:
+    ciu_features: List[Dict[str, str]] = get_can_i_use_data()
+    ciu_features.sort(key=lambda x: x["title"])
+    return ciu_features
+
+
+def get_mdn_feature_list() -> List[Dict[str, str]]:
+    mdn_features: List[Dict[str, str]] = get_mdn_data()
+    mdn_features.sort(key=lambda x: x["title"])
+    return mdn_features
 
 
 def get_feature_list() -> List[Dict[str, str]]:

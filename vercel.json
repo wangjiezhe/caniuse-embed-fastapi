@@ -1,9 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "uv sync",
-  "git": {
-    "deploymentEnabled": {
-      "workers": false
-    }
-  }
+  "installCommand": "uv sync"
 }
