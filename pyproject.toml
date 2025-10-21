@@ -1,0 +1,45 @@
+[project]
+name = "caniuse-embed-fastapi"
+version = "0.1.0"
+description = ""
+authors = [
+  { name="Jiezhe Wang", email="wangjiezhe@gmail.com" },
+]
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "requests",
+  "aiofiles",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "mypy",
+    "types-requests",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 88
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+strict_optional = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.flake8]
+max-line-length = 88
+exclude = [
+    ".venv",
+    ".mypy_cache",
+    ".ruff_cache",
+]
