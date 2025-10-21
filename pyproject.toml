@@ -8,7 +8,7 @@ authors = [
 dependencies = [
   "fastapi",
   "uvicorn",
-  "httpx"
+  "httpx",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
@@ -40,4 +40,9 @@ exclude = [
     ".venv",
     ".mypy_cache",
     ".ruff_cache",
+]
+
+[dependency-groups]
+dev = [
+    "workers-py",
 ]
