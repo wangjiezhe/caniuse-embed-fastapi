@@ -1,12 +1,22 @@
+from typing import Any, Dict, List
+
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel
-from typing import Dict, Any, List
 
 from app.routers.compat_data import get_mdn_browser_compat_data
 from app.routers.features import get_feature_list
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class FeatureRequest(BaseModel):
