@@ -1,7 +1,7 @@
 from functools import lru_cache
 from typing import Any, Dict, List, Optional
 
-import requests
+import httpx
 
 from app.constants import MDN_DATA_URL
 from app.utils.formatters import format_mdn_feature_title
@@ -9,7 +9,7 @@ from app.utils.formatters import format_mdn_feature_title
 
 @lru_cache(maxsize=1)
 def get_bcd_data() -> Dict[str, Any]:
-    response: requests.Response = requests.get(MDN_DATA_URL)
+    response: httpx.Response = httpx.get(MDN_DATA_URL)
     response.raise_for_status()  # Raise an exception for HTTP errors
     return response.json()
 

@@ -3,5 +3,8 @@ main = "app/main.py"
 compatibility_flags = ["python_workers", "python_dedicated_snapshot"]
 compatibility_date = "2025-10-09"
 
+[build]
+command = "uv run pywrangler dev"
+
 [observability]
 enabled = true
