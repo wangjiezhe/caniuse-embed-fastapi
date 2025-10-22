@@ -1,9 +1,11 @@
 from typing import Any, Dict, List
 
+import httpx
+from constants import MDN_DATA_URL
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse, StreamingResponse
 from pydantic import BaseModel
 from routers.compat_data import get_bcd_data, get_mdn_browser_compat_data
 from routers.features import (
@@ -50,6 +52,21 @@ async def read_mdn_features() -> JSONResponse:
 async def read_mdn_raw() -> JSONResponse:
     features: Dict[str, Any] = get_bcd_data()
     return JSONResponse(content=features)
+
+
+@app.get("/mdn-raw-redirect")
+async def read_mdn_raw_redirect() -> StreamingResponse:
+    async with httpx.AsyncClient() as client:
+        async with client.stream("GET", MDN_DATA_URL, timeout=30.0) as response:
+            response.raise_for_status()
+            return StreamingResponse(
+                response.aiter_bytes(),
+                media_type="application/json",
+                headers={
+                    "Content-Type": "application/json",
+                    "Content-Length": response.headers.get("Content-Length", ""),
+                },
+            )
 
 
 @app.get("/features")
