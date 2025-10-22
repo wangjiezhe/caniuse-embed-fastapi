@@ -11,6 +11,7 @@
     "enabled": true
   },
   "assets": {
-    "directory": "./static"
+    "directory": "./static",
+    "binding": "ASSETS"
   }
 }
